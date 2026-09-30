@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { IoKeypad } from "react-icons/io5";
 import { MdAddIcCall } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
@@ -9,6 +10,8 @@ import { MdMissedVideoCall } from "react-icons/md";
 import { MdOutlineRecordVoiceOver } from "react-icons/md";
 
 const CallList = () => {
+  const [call, setCall] = useState("");
+
   const list = [
     {
       name: "Rohan",
@@ -74,9 +77,14 @@ const CallList = () => {
       missedvidecall: <MdMissedVideoCall />,
     },
   ];
+
+  const callLog = list.filter((list) =>
+    list.name.toLowerCase().includes(call.trim().toLowerCase()),
+  );
+
   return (
     <>
-      <div className="border py-2 px-2 rounded-lg">
+      <div className="border border-[#e9edef] bg-white py-2 px-2 rounded-lg">
         <div className="flex justify-between items-center px-4 py-2">
           <div className="font-semibold text-2xl">
             <p>Calls</p>
@@ -92,12 +100,14 @@ const CallList = () => {
             </p>
           </div>
         </div>
-        <div className="border border-slate-200 bg-slate-300 w-full mt-2 rounded-full flex justify-center items-center">
-          <span className="text-slate-500 px-2">
+        <div className="border border-[#f0f2f5] bg-[#f0f2f5] w-full mt-2 rounded-full flex justify-center items-center">
+          <span className="text-[#667781] px-2">
             <IoSearch />
           </span>
           <input
-            className="w-full rounded-full border-none outline-none py-2"
+            value={call}
+            onChange={(e) => setCall(e.target.value)}
+            className="w-full rounded-full border-none bg-transparent outline-none py-2 placeholder:text-[#667781]"
             type="text"
             placeholder="Search name, number, @Username..."
           />
@@ -109,7 +119,7 @@ const CallList = () => {
 
         <div className="flex text-center text-2xl mt-5">
           <p className="flex justify-center items-center gap-3 px-4">
-            <icon className="text-white bg-green-800 px-3 py-3 rounded-full">
+            <icon className="text-white bg-[#00a884] px-3 py-3 rounded-full">
               <IoPersonAddSharp />
             </icon>
             <h2 className="text-center">Add Favourite</h2>
@@ -123,10 +133,10 @@ const CallList = () => {
         {/* Call List Through Array */}
 
         <div>
-          {list.map((item, index) => (
+          {callLog.map((item, index) => (
             <div
               key={index}
-              className="hover:bg-gray-300 rounded-md overflow-y-auto"
+              className="hover:bg-[#f0f2f5] rounded-md overflow-y-auto"
             >
               <div className="flex mt-3 font-semibold justify-between items-center cursor-pointer">
                 <div className="flex jusify-between items-center">
@@ -140,8 +150,8 @@ const CallList = () => {
 
                   <div className="">
                     <p className="overflow-y-auto">{item.name}</p>
-                    <p className="text-red-800">{item.videooutgoing}</p>
-                    <p className="text-red-800">
+                    <p className="text-[#ea0038]">{item.videooutgoing}</p>
+                    <p className="text-[#ea0038]">
                       <div className="flex gap-1 items-center">
                         <p className="text-md text-center">{item.missed}</p>
                         <p className="text-md text-center">{item.videologo}</p>

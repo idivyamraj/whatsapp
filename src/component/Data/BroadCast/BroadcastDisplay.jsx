@@ -11,7 +11,7 @@ const BroadcastDisplay = () => {
 
         <div>
           <p className="font-semibold text-3xl">Discover Channels</p>
-          <p className="font-semibold text-xl text-slate-500">Entertainment, sports, news, lifestyle, people and more. Follow the channels that interst you</p>
+          <p className="font-semibold text-xl text-[#667781]">Entertainment, sports, news, lifestyle, people and more. Follow the channels that interst you</p>
         </div>
 
       </div>

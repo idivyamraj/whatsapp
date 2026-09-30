@@ -1,13 +1,26 @@
 import React from "react";
+import { useState, useRef } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import { CiCirclePlus } from "react-icons/ci";
+import {CircleFadingPlus} from 'lucide-react';
 
 const StatusList = () => {
+
+  const handleClick = () => (
+    alert("File doesn't Exist")
+  )
+
+  const [fileName, setFileName] = useState("");
+  const fileInputRef = useRef(null);
+  const handleFileChange = (event) => {
+    setFileName(event.target.files[0]?.name || "");
+  }
   const Profile = [
     {
       profile: "H",
       name: "My Status",
       para: "Click to add status update",
+      icons: <CircleFadingPlus/>,
     },
   ];
 
@@ -82,17 +95,25 @@ const StatusList = () => {
       </div>
 
       <div>
-        <img className="rounded-full bg-slate-200" src="" alt="" />
+        <img className="rounded-full bg-[#e9edef]" src="" alt="" />
         {Profile.map((item, index) => (
           <div key={index}>
-            <div className="flex gap-2 px-2 py-2 mt-5 items-center">
-              <div className="rounded-full h-10 w-10 text-center py-2 px-2 bg-pink-300 font-semibold cursor-pointer">
+            <div className="flex gap-2 px- py-2 mt-5 items-center">
+              <div className="rounded-full h-10 w-10 text-center py-2 px-2 bg-[#d9fdd3] text-[#008069] font-semibold cursor-pointer">
                 {item.profile}
               </div>
 
               <div className="w-full">
                 <h1 className="w-full font-semibold">{item.name}</h1>
                 <span className="">{item.para}</span>
+              </div>
+
+              <div>
+
+                <input ref={fileInputRef} onChange={handleFileChange} className="hidden" type="file" />
+                <button className="flex gap-3 px-4 text-2xl cursor-pointer relative right-1" type="button"  onClick={() => fileInputRef.current?.click()}>
+                    {item.icons}
+                </button>
               </div>
             </div>
           </div>
@@ -103,15 +124,15 @@ const StatusList = () => {
         <h1 className="font-semibold text-xl px-1 mt-5">Recent</h1>
       </div>
 
-      <div className="mt-4 overflow-y-auto max-h-125 border border-slate-300 rounded-lg">
+      <div className="mt-4 overflow-y-auto max-h-125 border border-[#e9edef] rounded-lg">
         {status.map((item, index) => (
           <div
             key={index}
-            className="flex gap-3 items-center m-3 cursor-pointer hover:bg-slate-300 px-3 py-2 rounded-lg"
+            className="flex gap-3 items-center m-3 cursor-pointer hover:bg-[#f0f2f5] px-3 py-2 rounded-lg"
           >
             <div>
               <img
-                className="h-15 w-15 rounded-full bg-pink-300"
+                className="h-15 w-15 rounded-full bg-[#d9fdd3]"
                 src={item.img}
                 alt={item.img}
               />

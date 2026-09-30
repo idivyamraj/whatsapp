@@ -4,7 +4,7 @@ import HomePage from "./HomePage/HomePage";
 
 const App = () => {
   return (
-    <div className="flex flex-col h-screen overflow-hidden">
+    <div className="flex flex-col h-screen overflow-hidden bg-[#f0f2f5] text-[#111b21]">
       <Header />
       <div className="flex-1 min-h-0">
         <HomePage />

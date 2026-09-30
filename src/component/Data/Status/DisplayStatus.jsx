@@ -11,7 +11,7 @@ const DisplayStatus = () => {
 
         <div className="text-center">
           <p className='font-semibold text-3xl'>Share Status</p>
-          <p className="text-slate-500">Share text, videos, and photos that disappear after 24 hours. </p>
+          <p className="text-[#667781]">Share text, videos, and photos that disappear after 24 hours. </p>
         </div>
       </div>
     </>

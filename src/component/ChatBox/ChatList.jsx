@@ -1,8 +1,11 @@
 import React from "react";
 import { RiContactsBook3Fill } from "react-icons/ri";
 import { CiMenuKebab } from "react-icons/ci";
+import { useState } from "react";
 
 const ChatList = ({ onSelectUser }) => {
+  const [chat, setChat] = useState("");
+
   const navbutton = [
     {
       button: "All",
@@ -144,9 +147,13 @@ const ChatList = ({ onSelectUser }) => {
       time: "6.15 pm",
     },
   ];
+
+  const findChat = chatbar.filter((chatbar) =>
+    chatbar.name.toLowerCase().includes(chat.trim().toLowerCase()),
+  );
   return (
     <>
-      <div className="bg-white h-full flex flex-col">
+      <div className="bg-white h-full flex flex-col text-[#111b21]">
         <div className="p-4">
           <div className="flex justify-between items-center gap-2 w-full">
             <h1 className="text-2xl font-semibold">Chats</h1>
@@ -160,8 +167,10 @@ const ChatList = ({ onSelectUser }) => {
           </div>
 
           <input
-            className="border rounded-full px-4 w-full text-sm outline-none m-3 py-3 focus:border-green-500"
             type="text"
+            value={chat}
+            onChange={(e) => setChat(e.target.value)}
+            className="border border-[#f0f2f5] bg-[#f0f2f5] rounded-full px-4 w-full text-sm outline-none m-3 py-3 placeholder:text-[#667781] focus:border-[#00a884]"
             placeholder="Search or start a new chat"
           />
         </div>
@@ -170,7 +179,7 @@ const ChatList = ({ onSelectUser }) => {
           {navbutton.map((item, index) => (
             <div key={index}>
               <div>
-                <button className="px-4 py-1 mb-2 border rounded-full hover:bg-green-700 cursor-pointer hover:text-white">
+                <button className="px-4 py-1 mb-2 border border-[#e9edef] rounded-full text-[#54656f] hover:bg-[#e7fce3] hover:text-[#008069] cursor-pointer">
                   {item.button}
                 </button>
               </div>
@@ -179,11 +188,11 @@ const ChatList = ({ onSelectUser }) => {
         </div>
 
         <div className="h-[550px] overflow-y-auto">
-          {chatbar.map((item, index) => (
+          {findChat.map((item, index) => (
             <div
               key={index}
               onClick={() => onSelectUser(item)}
-              className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100"
+              className="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-[#f0f2f5]"
             >
               <img
                 className="h-10 w-10 rounded-full object-cover"
@@ -193,13 +202,13 @@ const ChatList = ({ onSelectUser }) => {
 
               <div className="flex justify-between items-start w-full min-w-0 ">
                 <div className="px-3">
-                  <p className="font-medium text-gray-900 text-sm">
+                  <p className="font-medium text-[#111b21] text-sm">
                     {item.name}
                   </p>
-                  <p className="text-sm text-gray-500">{item.msg}</p>
+                  <p className="text-sm text-[#667781]">{item.msg}</p>
                 </div>
 
-                <div className="text-xs text-gray-400 ml-2 shrink-0 ">
+                <div className="text-xs text-[#667781] ml-2 shrink-0 ">
                   <p>{item.time}</p>
                 </div>
               </div>
@@ -210,5 +219,4 @@ const ChatList = ({ onSelectUser }) => {
     </>
   );
 };
-
 export default ChatList;

@@ -5,7 +5,7 @@ import BottomSidebar from './BottomSidebar'
 const MainSidebar = () => {
 
   return (
-    <div className="flex h-full w-16 flex-col items-center justify-between border-r border-slate-300 bg-rose-200 py-1">
+    <div className="flex h-full w-16 flex-col items-center justify-between border-r border-[#e9edef] bg-white py-1">
       <TopSidebar/>
       <BottomSidebar />
     </div>

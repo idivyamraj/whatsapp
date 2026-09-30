@@ -39,7 +39,7 @@ const TopSidebar = ({ onCallLog }) => {
             <Link
               key={item.id}
               to={item.path}
-              className="p-2 text-gray-700 hover:text-blackhover:bg-slate-200 rounded-lg transition-colors cursor-pointer"
+              className="p-2 text-[#54656f] hover:bg-[#f0f2f5] hover:text-[#008069] rounded-lg cursor-pointer"
             >
               {item.lnk}
             </Link>

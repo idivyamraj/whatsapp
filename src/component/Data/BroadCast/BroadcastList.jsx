@@ -1,8 +1,12 @@
 import React from "react";
+import { useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { IoSearch } from "react-icons/io5";
 
 const BroadcastList = () => {
+  const [News, setNews] = useState("");
+  // const [Suggest, setSuggest] = useState("");
+
   const news = [
     {
       img: "TOI.png",
@@ -20,21 +24,21 @@ const BroadcastList = () => {
 
     {
       img: "Vocabulary.png",
-      name: "The Times of India",
+      name: "Daily Vocabulary",
       msg: "What far-right party AfD's Victory in Germany",
       timestamp: "10:43 pm",
     },
 
     {
       img: "Python.png",
-      name: "The Times of India",
+      name: "Python Programming",
       msg: "What far-right party AfD's Victory in Germany",
       timestamp: "10:43 pm",
     },
 
     {
       img: "RCB.png",
-      name: "The Times of India",
+      name: "Royal Challengers Bangalore",
       msg: "What far-right party AfD's Victory in Germany",
       timestamp: "10:43 pm",
     },
@@ -50,18 +54,23 @@ const BroadcastList = () => {
 
     {
       img: "RCB.png",
-      name: "FIFA World Cup",
+      name: "Royal Challengers Banglore",
       msg: "What far-right party AfD's Victory in Germany",
       follow: "Follow",
     },
 
     {
-      img: "RCB.png",
-      name: "FIFA World Cup",
+      img: "BCCI.png",
+      name: "Board of Control for Cricket in India",
       msg: "What far-right party AfD's Victory in Germany",
       follow: "Follow",
     },
   ];
+
+  const Channel = news.filter((news) =>
+    news.name.toLowerCase().includes(News.trim().toLowerCase()),
+  );
+
   return (
     <>
       <div className="flex justify-between items-center px-5 py-3">
@@ -76,22 +85,24 @@ const BroadcastList = () => {
         </div>
       </div>
 
-      <div className="bg-slate-200 w-full rounded-full mt-5 flex items-center">
+      <div className="bg-[#f0f2f5] w-full rounded-full mt-5 flex items-center">
         <span className="px-2">
           <IoSearch />
         </span>
         <input
-          className="w-full rounded-full py-2 border-none outline-none"
+          value={News}
+          onChange={(e) => setNews(e.target.value)}
+          className="w-full rounded-full py-2 border-none bg-transparent outline-none placeholder:text-[#667781]"
           type="text"
           placeholder="Search"
         />
       </div>
 
       <div className="">
-        {news.map((item, index) => (
+        {Channel.map((item, index) => (
           <div
             key={index}
-            className="flex gap-1 justify-between items-center px-2 mt-2 cursor-pointer hover:bg-slate-200 rounded-2xl"
+            className="flex gap-1 justify-between items-center px-2 mt-2 cursor-pointer hover:bg-[#f0f2f5] rounded-2xl"
           >
             <div className="flex gap-1 items-center">
               <div className="">
@@ -112,7 +123,7 @@ const BroadcastList = () => {
       </div>
 
       <div className="mt-5">
-        <p className="text-lg font-semibold text-slate-600 px-4">
+        <p className="text-lg font-semibold text-[#667781] px-4">
           Find Channel to follow
         </p>
       </div>
@@ -134,7 +145,9 @@ const BroadcastList = () => {
             </div>
 
             <div>
-              <h1 className="text-md text-blue-600 font-semibold">{item.follow}</h1>
+              <h1 className="text-md text-[#008069] font-semibold">
+                {item.follow}
+              </h1>
             </div>
           </div>
         ))}
